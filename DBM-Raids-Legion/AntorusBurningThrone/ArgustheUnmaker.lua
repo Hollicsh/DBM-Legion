@@ -457,7 +457,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 248499 then--Heroic/non mythic
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if uId and self:IsTanking(uId) then
 			local amount = args.amount or 1
 			--tankStacks[args.destName] = amount
@@ -487,7 +487,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			end
 		end
 	elseif spellId == 258039 then--Heroic
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if uId and self:IsTanking(uId) then
 			local amount = args.amount or 1
 			--tankStacks[args.destName] = amount
@@ -504,7 +504,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			end
 		end
 	elseif spellId == 258838 then--Mythic
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if uId and self:IsTanking(uId) then
 			local amount = args.amount or 1
 			--tankStacks[args.destName] = amount
@@ -745,7 +745,7 @@ function mod:SPELL_AURA_REMOVED(args)
 	elseif spellId == 258039 then--Heroic
 		--tankStacks[args.destName] = nil
 		tDeleteItem(tankStacks, args.destName)
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if uId and self:IsTanking(uId) then
 			if not args:IsPlayer() then--Removed from tank that's not you (only time it's removed is on death)
 				specWarnDeadlyScytheTaunt:Show(args.destName)
@@ -755,7 +755,7 @@ function mod:SPELL_AURA_REMOVED(args)
 	elseif spellId == 258838 then--Mythic
 		--tankStacks[args.destName] = nil
 		tDeleteItem(tankStacks, args.destName)
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if uId and self:IsTanking(uId) then
 			if not args:IsPlayer() then--Removed from tank that's not you (only time it's removed is on death)
 				specWarnSoulrendingScytheTaunt:Show(args.destName)

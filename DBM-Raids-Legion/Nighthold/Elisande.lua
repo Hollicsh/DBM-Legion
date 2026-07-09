@@ -279,7 +279,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 209615 and not (self:IsRemix() or self:IsTrivial()) then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self:IsTanking(uId) then
 			local amount = args.amount or 1
 			if amount >= 2 then
@@ -319,7 +319,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif spellId == 209598 then
 		self.vb.burstDebuffCount = self.vb.burstDebuffCount + 1
 		warnConflexiveBurst:CombinedShow(0.5, args.destName)
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if args:IsPlayer() then
 			specWarnConflexiveBurst:Show()
 			specWarnConflexiveBurst:Play("targetyou")

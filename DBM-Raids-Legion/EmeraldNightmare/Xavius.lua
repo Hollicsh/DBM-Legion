@@ -336,12 +336,12 @@ function mod:SPELL_AURA_APPLIED(args)
 			playerHasDream = true
 		end
 		if self:IsTank() then
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			if uId and self:IsTanking(uId) then
 				warnDreamOthers:CombinedShow(0.3, args.destName)
 			end
 		elseif self:IsHealer() then
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			if uId and self:IsHealer(uId) then
 				warnDreamOthers:CombinedShow(0.3, args.destName)
 			end

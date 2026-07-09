@@ -219,7 +219,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if spellId == 212514 then
 		warnWebWrap:Show(args.destName)
 	elseif spellId == 218124 then--218144 is ID people helping to soak get, 218124 is only applied to current tank
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self:IsTanking(uId) then--Why I need a tank filter is beyond me but for some reason 218124 is MAGICALLY triggering on 218144
 			if args:IsPlayer() then
 				specViolentWinds:Show()
@@ -248,7 +248,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			warnWebOfPain:Show(args.sourceName, args.destName)
 		end
 		if self.Options.SetIconOnWeb and self:IsInCombat() then
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			if self:IsTanking(uId) then--Tank Group
 				self:SetIcon(args.sourceName, 1)
 				self:SetIcon(args.destName, 2)

@@ -190,7 +190,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			yellShockGrenadeFades:Countdown(5, 3)
 		end
 	elseif spellId == 244892 then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self:IsTanking(uId) then
 			local amount = args.amount or 1
 			if amount >= 2 then

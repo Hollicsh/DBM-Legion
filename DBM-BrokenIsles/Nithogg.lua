@@ -86,7 +86,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnLightningRod:Play("runaway")
 		end
 	elseif spellId == 212852 then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self:IsTanking(uId) then
 			self:Unschedule(checkTankSwap)
 			self:Schedule(0.5, checkTankSwap, self, args.destName, args.spellName)

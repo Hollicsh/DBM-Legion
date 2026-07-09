@@ -295,7 +295,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if spellId == 229119 then
 		warnOrbOfCorruption:CombinedShow(0.3, args.destName)
 		if self.Options.SetIconOnOrbs then
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			if self:IsTanking(uId) then
 				self:SetIcon(args.destName, 2)--Circle
 			elseif self:IsHealer(uId) then
@@ -307,7 +307,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif spellId == 230267 then
 		warnOrbOfCorrosion:CombinedShow(0.3, args.destName)
 		if self.Options.SetIconOnOrbs then
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			if self:IsHealer(uId) then--On All difficulties as of Dec 6th, a tank isn't chosen, just 1 healer and 2 dps
 				self:SetIcon(args.destName, 1)--Star
 			else
@@ -316,7 +316,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif spellId == 227982 then
 		if not args:IsPlayer() then
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			if self:IsTanking(uId) then--Filter numties standing in front of boss that shouldn't be
 				specWarnBilewaterRedox:Show(args.destName)
 				specWarnBilewaterRedox:Play("tauntboss")
@@ -324,7 +324,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif spellId == 228519 then
 		if not args:IsPlayer() then
-			local uId = DBM:GetRaidUnitId(args.destName)
+			local uId = DBM:GetRaidUnitId(args.destName, true)
 			--Filter numties standing in front of boss that shouldn't be
 			--Also filter tanks that are too far away to taunt from (mythic split)
 			if self:IsTanking(uId) and self:CheckNearby(18, args.destName) then

@@ -178,7 +178,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if (spellId == 228744 or spellId == 228794 or spellId == 228810 or spellId == 228811 or spellId == 228818 or spellId == 228819) and args:IsDestTypePlayer() then
 		local icon = 0
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		local currentIcon = GetRaidTargetIndex(uId) or 0
 		if currentIcon == 0 then--Only if player doesn't already have a debuff
 			if self.vb.one == "None" then
@@ -300,7 +300,7 @@ end
 function mod:SPELL_AURA_REMOVED(args)
 	local spellId = args.spellId
 	if (spellId == 228744 or spellId == 228794 or spellId == 228810 or spellId == 228811 or spellId == 228818 or spellId == 228819) and args:IsDestTypePlayer() then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self.Options.SetIconOnFoam and not (DBM:UnitDebuff(uId, fireFoam) or DBM:UnitDebuff(uId, frostFoam) or DBM:UnitDebuff(uId, shadowFoam)) then
 			if args.destName == self.vb.one then
 				self.vb.one = "None"

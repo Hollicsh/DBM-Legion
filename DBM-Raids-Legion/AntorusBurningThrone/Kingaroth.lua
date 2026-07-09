@@ -245,7 +245,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 254919 or spellId == 257978 then--Always swap after each cast
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if uId and self:IsTanking(uId) and not args:IsPlayer() then
 			local _, _, _, _, _, expireTime = DBM:UnitDebuff("player", spellId)
 			local remaining

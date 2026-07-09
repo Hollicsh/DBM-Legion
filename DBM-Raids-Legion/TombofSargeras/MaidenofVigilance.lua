@@ -169,7 +169,7 @@ function mod:SPELL_AURA_APPLIED(args)
 				yellInfusion:Yell(4, "")
 			end
 		end
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self.Options.SetIconOnInfusion and self:IsTanking(uId) and spellId == 235240 then
 			self:SetIcon(args.destName, 4)
 		end
@@ -181,7 +181,7 @@ function mod:SPELL_AURA_APPLIED(args)
 				yellInfusion:Yell(1, "")
 			end
 		end
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self.Options.SetIconOnInfusion and self:IsTanking(uId) and spellId == 235213 then
 			self:SetIcon(args.destName, 1)
 		end

@@ -147,7 +147,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnChosenFate:Play("stopattack")
 		end
 	elseif spellId == 222079 and not (self:IsRemix() or self:IsTrivial()) then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if self:IsTanking(uId) then
 			local amount = args.amount or 1
 			timerSearingWounds:Start(args.destName)

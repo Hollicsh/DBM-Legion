@@ -440,7 +440,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 245509 then
-		local uId = DBM:GetRaidUnitId(args.destName)
+		local uId = DBM:GetRaidUnitId(args.destName, true)
 		if uId and self:IsTanking(uId) then
 			self.vb.lastTankHit = args.destName
 		end
